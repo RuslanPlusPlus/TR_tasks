@@ -1,4 +1,4 @@
-package com.rusned.tr_task;
+package com.rusned.tr_task.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
