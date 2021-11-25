@@ -1,0 +1,33 @@
+services:
+
+  db:
+    image: postgres:14.0
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=qqqq
+      - POSTGRES_USER=dev
+      - POSTGRES_DB=epam_task
+    ports:
+      - "8001:5432"
+    networks:
+      db:
+        aliases:
+          - postgresql
+
+  web:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/epam_task
+      - SPRING_DATASOURCE_USERNAME=dev
+      - SPRING_DATASOURCE_PASSWORD=qqqq
+    depends_on:
+      - db
+    networks:
+      - db
+
+networks:
+  db:
+    name: db
