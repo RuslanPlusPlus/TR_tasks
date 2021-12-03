@@ -1,13 +1,10 @@
 package com.rusned.tr_task.controller;
 
-import com.rusned.tr_task.entity.City;
+import com.rusned.tr_task.domain.CityEntity;
 import com.rusned.tr_task.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,10 +20,30 @@ public class CityController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<City>> findAll(){
-        return new ResponseEntity<>(
-                cityService.findAll(),
-                HttpStatus.OK
-        );
+    public ResponseEntity<List<CityEntity>> findAll(){
+        return ResponseEntity.ok(cityService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<CityEntity> findById(@PathVariable(value = "id") Long id){
+        return ResponseEntity.ok(cityService.findById(id));
+    }
+
+    @PostMapping
+    public ResponseEntity<CityEntity> create(@RequestBody CityEntity cityEntity){
+        CityEntity cityEntityCreated = cityService.create(cityEntity);
+        return ResponseEntity.ok(cityEntityCreated);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable(value = "id") Long id){
+        cityService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CityEntity> update(@PathVariable(value = "id") Long id,
+                                             @RequestBody CityEntity cityEntity){
+        return ResponseEntity.ok(cityService.update(id, cityEntity));
     }
 }

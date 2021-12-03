@@ -1,18 +1,18 @@
-package com.rusned.tr_task.entity;
+package com.rusned.tr_task.domain;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "city")
-public class City {
+public class CityEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     String name;
 
-    public City(){}
+    public CityEntity(){}
 
     public Long getId() {
         return id;
