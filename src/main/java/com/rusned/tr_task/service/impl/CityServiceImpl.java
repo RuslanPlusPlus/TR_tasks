@@ -1,6 +1,7 @@
 package com.rusned.tr_task.service.impl;
 
 import com.rusned.tr_task.domain.CityEntity;
+import com.rusned.tr_task.exception.ResourceNotFoundException;
 import com.rusned.tr_task.repository.CityRepository;
 import com.rusned.tr_task.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class CityServiceImpl implements CityService {
     public CityEntity findById(Long entityId) {
         Optional<CityEntity> cityEntityFromDb = cityRepository.findById(entityId);
         if (cityEntityFromDb.isEmpty()) {
-            // TODO: 12/3/2021 throw exception
+            throw new ResourceNotFoundException("City not found for this id: " + entityId);
         }
         return cityEntityFromDb.get();
     }
