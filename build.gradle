@@ -24,7 +24,7 @@ dependencies {
     implementation 'ch.qos.logback.contrib:logback-jackson:0.1.5'
 
     implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
-    compileOnly group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
+    compileOnly group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 
     runtimeOnly 'org.postgresql:postgresql'
 
@@ -34,7 +34,11 @@ dependencies {
     runtimeOnly 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
     runtimeOnly 'com.fasterxml.jackson.core:jackson-annotations:2.13.0'
 
+    testImplementation(platform('org.junit:junit-bom:5.8.1'))
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'com.h2database:h2:1.4.200'
+    testImplementation 'org.assertj:assertj-core:3.21.0'
 }
 
 test {

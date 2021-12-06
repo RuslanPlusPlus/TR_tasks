@@ -3,14 +3,14 @@ package com.rusned.tr_task.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "city")
+@Table(name = "city", schema = "public")
 public class CityEntity {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    String name;
+    private String name;
 
     public CityEntity(){}
 
